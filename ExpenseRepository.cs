@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Globalization;
 using System.Linq;
 
 public class ExpenseRepository
@@ -51,7 +52,7 @@ public class ExpenseRepository
                 string[] parts = line.Split(',');
                 if (parts.Length == 4 && int.TryParse(parts[0], out int id)
                     && decimal.TryParse(parts[2], out decimal amount)
-                    && DateTime.TryParseExact(parts[3], "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out DateTime date))
+                    && DateTime.TryParseExact(parts[3], "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
                 {
                     expenses.Add(new Expense
                     {
